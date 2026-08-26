@@ -1,0 +1,12 @@
+{
+  "name": "gryz",
+  "description": "Publish, share, and manage documents on Gryz directly from Cursor — Markdown/HTML sharing over MCP with OAuth sign-in.",
+  "version": "1.5.0",
+  "author": { "name": "Gryz" },
+  "homepage": "https://www.gryz.ai",
+  "repository": "https://github.com/grtwo-jcansler/gryz-cursor-plugin",
+  "license": "MIT",
+  "keywords": ["mcp", "documents", "markdown", "html", "sharing", "publishing"],
+  "logo": "assets/logo.svg",
+  "mcpServers": "mcp.json"
+}
