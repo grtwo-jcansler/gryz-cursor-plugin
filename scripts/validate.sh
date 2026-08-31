@@ -50,20 +50,61 @@ PY
 
 python3 - <<'PY' || fail 'README tool list drift'
 import json
+import re
 from pathlib import Path
 
 readme = Path("README.md").read_text()
 expected = json.loads(Path("expected-tools.json").read_text())
-for entry in expected["tools"]:
+tools = expected.get("tools")
+if not isinstance(tools, list) or not tools:
+    raise SystemExit("expected-tools.json must contain a non-empty tools array")
+
+names = [t.get("name") for t in tools]
+if any(not isinstance(n, str) or not n for n in names):
+    raise SystemExit("each tool must have a non-empty name")
+if len(names) != len(set(names)):
+    raise SystemExit("expected-tools.json has duplicate tool names")
+
+comment_match = re.search(
+    r"<!--\s*gryz-mcp-tools:\s*([^\s-][^>]*?)\s*-->",
+    readme,
+)
+if not comment_match:
+    raise SystemExit("README.md missing gryz-mcp-tools HTML comment (see CONTRIBUTING.md)")
+comment_names = [n.strip() for n in comment_match.group(1).split(",") if n.strip()]
+if set(comment_names) != set(names):
+    missing = set(names) - set(comment_names)
+    extra = set(comment_names) - set(names)
+    msg = []
+    if missing:
+        msg.append(f"missing from comment: {sorted(missing)}")
+    if extra:
+        msg.append(f"extra in comment: {sorted(extra)}")
+    raise SystemExit("; ".join(msg))
+
+for entry in tools:
     label = entry["readmeLabel"]
     if label not in readme:
         raise SystemExit(f"README.md missing tool label: {label!r} ({entry['name']})")
+    if f"`{entry['name']}`" not in readme:
+        raise SystemExit(
+            f"README.md must document MCP tool id `{entry['name']}` in backticks"
+        )
 PY
 
-# ── README + mcp.json use slashless URL in examples ────────────────────────
-if grep -q 'api/mcp/' README.md; then
-  fail 'README.md must not use https://…/api/mcp/ (trailing slash breaks Cursor OAuth)'
-fi
+# ── README MCP URLs must not use a trailing slash on /api/mcp ───────────────
+python3 - <<'PY' || fail 'README MCP URL trailing slash'
+import re
+from pathlib import Path
+
+readme = Path("README.md").read_text()
+bad = re.findall(r"https?://[^\s)>\"']+/api/mcp/", readme)
+if bad:
+    raise SystemExit(
+        "README.md must not use MCP URLs ending in /api/mcp/ "
+        f"(trailing slash breaks Cursor OAuth): {bad}"
+    )
+PY
 
 if ! grep -q "$MCP_URL" README.md; then
   fail "README.md must include primary MCP URL $MCP_URL"

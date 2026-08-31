@@ -30,6 +30,12 @@ drafts you are not ready to share yet.
 Notes respect per-note **AI access** (`collaborate` vs `read_only`) set in
 your Gryz dashboard.
 
+MCP tool ids: `publish_document`, `get_document`, `list_documents`,
+`update_document`, `delete_document`, `list_notes`, `create_note`,
+`append_note`, `update_note`, `delete_note`.
+
+<!-- gryz-mcp-tools: publish_document, get_document, list_documents, update_document, delete_document, list_notes, create_note, append_note, update_note, delete_note -->
+
 ## Install
 
 ### One-click

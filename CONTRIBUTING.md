@@ -29,7 +29,7 @@ Tools are **not** declared in `mcp.json`. Update documentation only:
 | File | Action |
 |------|--------|
 | `expected-tools.json` | Add/rename tool + `readmeLabel` (sync with `grtwo-docs` `lib/mcp/tool-definitions.ts`) |
-| `README.md` | Document the tool under Documents or Notes |
+| `README.md` | Document the tool under Documents or Notes; add backtick tool id; update the `gryz-mcp-tools` HTML comment |
 | `.cursor-plugin/plugin.json` | Bump `version` if marketplace listing should update |
 
 Also update [grtwo-docs](https://github.com/grtwo-jcansler/grtwo-docs):
