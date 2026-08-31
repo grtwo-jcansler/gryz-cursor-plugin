@@ -100,6 +100,7 @@ connection until you are ready; new setups should use the `gryz.ai` URL above.
 ## Links
 
 - [Full MCP setup guide](https://www.gryz.ai/docs/mcp/)
+- [Contributing](CONTRIBUTING.md)
 - [Gryz](https://www.gryz.ai)
 - [Report an issue](https://github.com/grtwo-jcansler/gryz-cursor-plugin/issues)
 

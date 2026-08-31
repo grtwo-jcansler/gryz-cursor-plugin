@@ -1,0 +1,15 @@
+{
+  "$comment": "Human-facing README labels for each MCP tool. Sync with grtwo-docs lib/mcp/tool-definitions.ts MCP_TOOL_NAMES when tools change.",
+  "tools": [
+    { "name": "publish_document", "readmeLabel": "Publish a document" },
+    { "name": "get_document", "readmeLabel": "Get a document" },
+    { "name": "list_documents", "readmeLabel": "List your documents" },
+    { "name": "update_document", "readmeLabel": "Update a document" },
+    { "name": "delete_document", "readmeLabel": "Delete a document" },
+    { "name": "list_notes", "readmeLabel": "List notes" },
+    { "name": "create_note", "readmeLabel": "Create note" },
+    { "name": "append_note", "readmeLabel": "Append note" },
+    { "name": "update_note", "readmeLabel": "Update note" },
+    { "name": "delete_note", "readmeLabel": "Delete note" }
+  ]
+}
