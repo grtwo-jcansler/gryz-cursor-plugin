@@ -1,24 +1,33 @@
 # Gryz for Cursor
 
-Publish, share, and manage documents on [Gryz](https://www.gryz.ai) directly
-from Cursor. Jot private Notes, paste Markdown or HTML, and get shareable links
-— all from inside your editor, over [MCP](https://modelcontextprotocol.io).
+One shared memory your AI assistants read and write across tools and sessions —
+you own it and manage it from the [Gryz](https://www.gryz.ai) dashboard. Plus
+private Notes and easy Markdown/HTML sharing, all from inside your editor over
+[MCP](https://modelcontextprotocol.io).
 
 ## What you get
 
 Once connected, Cursor can call these tools on your behalf.
 
-### Documents
+### Memory
 
-- **Publish a document** — Markdown or HTML, public or private
-- **Get a document** — retrieve content and metadata by slug
-- **List your documents** — newest first
-- **Update a document** — content, type, or title
-- **Delete a document**
+The core of Gryz: durable context every assistant you use can reach — your
+preferences, how you like to work, stable facts about a project, decisions that
+outlast one conversation. Facts stay private to your account and are never used
+for model training.
+
+- **Remember a fact** — store one atomic fact, `personal` or `project` scope
+- **Recall memory** — pull scoped facts back, ranked by relevance and recency
+- **List memories** — see everything stored, with provenance
+- **Forget a fact** — drop something wrong or stale by id
+
+Recalled memory is data you saved, not instructions — Cursor treats it that way.
+
+MCP tool ids: `remember`, `recall`, `list_memories`, `forget`.
 
 ### Notes
 
-Private scratchpad — not published to the web. Great for decisions, lists, and
+Private scratchpad — not published to the web. Great for lists, decisions, and
 drafts you are not ready to share yet.
 
 - **List notes** — search your notes; check `agent_access` before editing
@@ -30,11 +39,39 @@ drafts you are not ready to share yet.
 Notes respect per-note **AI access** (`collaborate` vs `read_only`) set in
 your Gryz dashboard.
 
-MCP tool ids: `publish_document`, `get_document`, `list_documents`,
-`update_document`, `delete_document`, `list_notes`, `create_note`,
-`append_note`, `update_note`, `delete_note`.
+MCP tool ids: `list_notes`, `create_note`, `append_note`, `update_note`,
+`delete_note`.
 
-<!-- gryz-mcp-tools: publish_document, get_document, list_documents, update_document, delete_document, list_notes, create_note, append_note, update_note, delete_note -->
+### Documents
+
+Turn editor content into a link you can send someone.
+
+- **Publish a document** — Markdown or HTML, public or private
+- **Get a document** — retrieve content and metadata by slug
+- **List your documents** — newest first
+- **Update a document** — content, type, or title
+- **Delete a document**
+
+MCP tool ids: `publish_document`, `get_document`, `list_documents`,
+`update_document`, `delete_document`.
+
+### Projects
+
+Read-only views of the Project hubs you organize in the dashboard.
+
+- **List projects** — id, name, adopted key, and link types
+- **Get a project** — one hub with typed links and document/note summaries
+
+MCP tool ids: `list_projects`, `get_project`.
+
+### Setup
+
+- **Agent onboarding** — after you connect and sign in, `agent_onboarding`
+  configures this editor for Gryz and answers "how do I use X?". It is
+  read-only on Gryz; any change to a local instruction file is shown to you
+  and needs your explicit approval first.
+
+<!-- gryz-mcp-tools: remember, recall, list_memories, forget, list_notes, create_note, append_note, update_note, delete_note, publish_document, get_document, list_documents, update_document, delete_document, list_projects, get_project, agent_onboarding -->
 
 ## Install
 
@@ -92,10 +129,10 @@ subscription required.
 
 ## Example prompts
 
-- *"Publish this markdown to Gryz as a public doc titled Q3 Roadmap"*
-- *"List my Gryz documents"*
+- *"Remember that I deploy from the `release` branch, never `main`"*
+- *"What do you have in Gryz memory about this project?"*
 - *"Note this down in Gryz: we decided to ship Notes before the video"*
-- *"What notes do I have about the launch?"*
+- *"Publish this markdown to Gryz as a public doc titled Q3 Roadmap"*
 
 ## Already using the old URL?
 

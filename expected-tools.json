@@ -1,15 +1,22 @@
 {
-  "$comment": "Human-facing README labels for each MCP tool. Sync with grtwo-docs lib/mcp/tool-definitions.ts MCP_TOOL_NAMES when tools change.",
+  "$comment": "Human-facing README labels for each MCP tool. Sync with grtwo-docs lib/mcp/tool-definitions.ts MCP_TOOL_NAMES when tools change. Excludes setup_memory (deprecated alias, not advertised).",
   "tools": [
+    { "name": "remember", "readmeLabel": "Remember a fact" },
+    { "name": "recall", "readmeLabel": "Recall memory" },
+    { "name": "list_memories", "readmeLabel": "List memories" },
+    { "name": "forget", "readmeLabel": "Forget a fact" },
+    { "name": "list_notes", "readmeLabel": "List notes" },
+    { "name": "create_note", "readmeLabel": "Create note" },
+    { "name": "append_note", "readmeLabel": "Append note" },
+    { "name": "update_note", "readmeLabel": "Update note" },
+    { "name": "delete_note", "readmeLabel": "Delete note" },
     { "name": "publish_document", "readmeLabel": "Publish a document" },
     { "name": "get_document", "readmeLabel": "Get a document" },
     { "name": "list_documents", "readmeLabel": "List your documents" },
     { "name": "update_document", "readmeLabel": "Update a document" },
     { "name": "delete_document", "readmeLabel": "Delete a document" },
-    { "name": "list_notes", "readmeLabel": "List notes" },
-    { "name": "create_note", "readmeLabel": "Create note" },
-    { "name": "append_note", "readmeLabel": "Append note" },
-    { "name": "update_note", "readmeLabel": "Update note" },
-    { "name": "delete_note", "readmeLabel": "Delete note" }
+    { "name": "list_projects", "readmeLabel": "List projects" },
+    { "name": "get_project", "readmeLabel": "Get a project" },
+    { "name": "agent_onboarding", "readmeLabel": "Agent onboarding" }
   ]
 }
