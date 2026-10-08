@@ -1,12 +1,12 @@
 {
   "name": "gryz",
-  "description": "One shared memory your AI assistants read and write across tools and sessions — you own it and manage it from the Gryz dashboard. Easy Markdown/HTML sharing and private Notes too, over MCP with OAuth sign-in.",
-  "version": "1.7.0",
+  "description": "One shared memory your AI assistants read and write across tools and sessions — you own it and manage it from the Gryz dashboard. Plus documents your assistants can edit safely, private Notes, Skills, and Tasks, over MCP with OAuth sign-in.",
+  "version": "1.8.0",
   "author": { "name": "Gryz" },
   "homepage": "https://www.gryz.ai",
   "repository": "https://github.com/grtwo-jcansler/gryz-cursor-plugin",
   "license": "MIT",
-  "keywords": ["mcp", "memory", "agent-memory", "context", "notes", "documents", "markdown", "html", "sharing"],
+  "keywords": ["mcp", "memory", "agent-memory", "context", "notes", "documents", "markdown", "html", "sharing", "skills", "tasks", "version-history"],
   "logo": "assets/logo.svg",
   "mcpServers": "mcp.json"
 }
