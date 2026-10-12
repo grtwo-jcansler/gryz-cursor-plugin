@@ -52,6 +52,20 @@ check_json_field_length() {
     fi
 }
 
+check_array_length_range() {
+    local file=$1
+    local field=$2
+    local min=$3
+    local max=$4
+    local count=$(jq "$field | length" "$file")
+    
+    if [ "$count" -lt "$min" ] || [ "$count" -gt "$max" ]; then
+        error "$field count must be between $min and $max (got $count)"
+    else
+        info "$field count: $count (within $min-$max range) ✓"
+    fi
+}
+
 check_array_length() {
     local file=$1
     local field=$2
@@ -185,7 +199,7 @@ echo ""
 echo "Checking test case counts..."
 check_array_length "$PLUGIN_JSON" '.extensions."com.openai.review".test_cases.positive' 5
 check_array_length "$PLUGIN_JSON" '.extensions."com.openai.review".test_cases.negative' 3
-check_array_length "$PLUGIN_JSON" '.extensions."com.openai.interface".capabilities' 15
+check_array_length_range "$PLUGIN_JSON" '.extensions."com.openai.interface".capabilities' 1 20
 check_array_length "$PLUGIN_JSON" '.extensions."com.openai.interface".defaultPrompt' 3
 echo ""
 

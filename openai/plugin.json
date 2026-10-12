@@ -22,7 +22,6 @@
     "html",
     "sharing",
     "skills",
-    "tasks",
     "version-history",
     "collaboration",
     "ai-assistant"
@@ -42,15 +41,7 @@
         "Read, copy, create, and update reusable skills",
         "Publish Markdown or HTML as a document with a shareable link",
         "Find, read, and edit sections of your documents",
-        "View and restore earlier document versions",
-        "OAuth authentication for secure account access",
-        "Markdown and HTML document support",
-        "Private or public document visibility controls",
-        "Cross-tool memory persistence for multi-assistant workflows",
-        "Safe concurrent editing with version conflict detection",
-        "Read notes without modifying them when marked read-only",
-        "Delete memories, notes, skills, or documents with confirmation",
-        "Append content to existing documents without rewriting"
+        "View and restore earlier document versions"
       ],
       "websiteURL": "https://www.gryz.ai",
       "supportURL": "https://www.gryz.ai/support/",
