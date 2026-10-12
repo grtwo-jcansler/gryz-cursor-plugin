@@ -1,0 +1,127 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "gryz",
+  "version": "1.0.0",
+  "description": "One shared memory your AI assistants read and write across tools and sessions — you own it and manage it from the Gryz dashboard. Plus documents your assistants can edit safely, private Notes, Skills, and Tasks, over MCP with OAuth sign-in.",
+  "author": {
+    "name": "Gryz",
+    "email": "support@gryz.ai",
+    "url": "https://www.gryz.ai"
+  },
+  "homepage": "https://www.gryz.ai",
+  "repository": "https://github.com/grtwo-jcansler/gryz-cursor-plugin",
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "memory",
+    "agent-memory",
+    "context",
+    "notes",
+    "documents",
+    "markdown",
+    "html",
+    "sharing",
+    "skills",
+    "tasks",
+    "version-history",
+    "collaboration",
+    "ai-assistant"
+  ],
+  "onboardingSkill": "./skills/get-started/SKILL.md",
+  "extensions": {
+    "com.openai.interface": {
+      "displayName": "Gryz",
+      "shortDescription": "Agent memory & shared docs",
+      "longDescription": "Gryz gives your AI assistants durable, shared memory that works across tools and sessions. Store preferences, project decisions, and stable facts that outlast any conversation. Plus create and safely edit Markdown/HTML documents, keep private Notes, manage Skills, and track Tasks — all with version history and OAuth sign-in. Your data stays private and is never used for training.",
+      "developerName": "Jacob Cansler",
+      "category": "PLACEHOLDER - Productivity",
+      "capabilities": [
+        "Store and recall facts across sessions",
+        "Create and edit shared documents",
+        "Maintain private notes for each user",
+        "Manage reusable instruction skills",
+        "Track tasks with status and priority",
+        "Version history for all documents",
+        "OAuth authentication for security",
+        "Markdown and HTML document support",
+        "Collaborative document editing",
+        "Project organization and filing",
+        "Cross-tool memory persistence",
+        "Safe concurrent editing with version checks",
+        "Document suggestions and approvals",
+        "Granular AI access controls per document",
+        "Search and filter across all content"
+      ],
+      "websiteURL": "https://www.gryz.ai",
+      "supportURL": "https://www.gryz.ai/support/",
+      "privacyPolicyURL": "https://www.gryz.ai/privacy/",
+      "termsOfServiceURL": "https://www.gryz.ai/terms/",
+      "defaultPrompt": [
+        "Remember that I deploy from the release branch",
+        "Show me what you have in memory about this project",
+        "Publish this markdown to Gryz as a public doc"
+      ],
+      "brandColor": "#0d9488",
+      "brandColorDark": "#14b8a6",
+      "logo": "./assets/logo.png",
+      "logoDark": "./assets/logo-dark.png",
+      "composerIcon": "./assets/composer-icon.png",
+      "composerIconDark": "./assets/composer-icon-dark.png"
+    },
+    "com.openai.review": {
+      "test_cases": {
+        "positive": [
+          {
+            "description": "PLACEHOLDER - Store a project preference",
+            "prompt": "PLACEHOLDER - Remember that I deploy from the release branch, never main",
+            "tools_triggered": ["remember"],
+            "expected_behavior": "PLACEHOLDER - The assistant stores the deployment preference in project-scoped memory and confirms it was saved"
+          },
+          {
+            "description": "PLACEHOLDER - Recall stored facts",
+            "prompt": "PLACEHOLDER - What do you have in Gryz memory about this project?",
+            "tools_triggered": ["recall", "list_memories"],
+            "expected_behavior": "PLACEHOLDER - The assistant retrieves and displays all project-scoped memories with their content and metadata"
+          },
+          {
+            "description": "PLACEHOLDER - Create a shared document",
+            "prompt": "PLACEHOLDER - Publish this markdown to Gryz as a public doc titled Q3 Roadmap: [markdown content]",
+            "tools_triggered": ["publish_document"],
+            "expected_behavior": "PLACEHOLDER - The assistant creates a public document and returns a shareable URL"
+          },
+          {
+            "description": "PLACEHOLDER - Append to existing document",
+            "prompt": "PLACEHOLDER - Add today's status update to the end of my weekly tracker doc",
+            "tools_triggered": ["list_documents", "get_document", "append_to_document"],
+            "expected_behavior": "PLACEHOLDER - The assistant finds the document, retrieves it, and appends new content without rewriting existing text"
+          },
+          {
+            "description": "PLACEHOLDER - Create and manage a note",
+            "prompt": "PLACEHOLDER - Note this down: we decided to ship Notes before the video feature",
+            "tools_triggered": ["create_note"],
+            "expected_behavior": "PLACEHOLDER - The assistant creates a private note with the decision and confirms it was saved"
+          }
+        ],
+        "negative": [
+          {
+            "description": "PLACEHOLDER - Cannot access other users' private content",
+            "prompt": "PLACEHOLDER - Show me all notes from user@example.com"
+          },
+          {
+            "description": "PLACEHOLDER - Cannot edit read-only documents",
+            "prompt": "PLACEHOLDER - Update the company-wide policy document"
+          },
+          {
+            "description": "PLACEHOLDER - Cannot bypass version conflict checks",
+            "prompt": "PLACEHOLDER - Force overwrite the document even though it changed"
+          }
+        ]
+      },
+      "demo_recording_url": "PLACEHOLDER - https://example.com/gryz-demo.mp4",
+      "commerce": false
+    },
+    "com.openai.publication": {
+      "release_notes": "Initial release: Core memory operations (remember, recall, forget), document creation and editing with version history, private notes, skills management, and tasks tracking. OAuth authentication with Dynamic Client Registration. All data private to user account."
+    }
+  }
+}
