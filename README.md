@@ -18,7 +18,7 @@ OAuth and API-key access are both free with any Gryz account — no subscription
 
 Sign-in depends on the client:
 
-- **VS Code** — In the Extensions view, search `@mcp gryz` and click **Install**. Sign-in starts as soon as it installs (Google, GitHub, a magic link, or a password). Chat needs a GitHub Copilot sign-in before it can use any MCP tools. If that search does not list Gryz, use the Command Palette: **MCP: Add Server**, choose HTTP, and paste the URL.
+- **VS Code** — In the Extensions view, search `@mcp gryz` and click **Install**. Sign-in starts as soon as it installs (Google, GitHub, a magic link, or a password). If that search does not list Gryz, use the Command Palette: **MCP: Add Server**, choose HTTP, and paste the URL.
 - **Cursor** — add the URL in Cursor MCP settings, or follow [Cursor plugin](#cursor-plugin) below. The first tool call opens a browser to sign in.
 - **Claude** — **Settings → Connectors → Add connector**, paste the URL, and finish sign-in on that screen. Claude starts OAuth there, not from a tool call.
 - **Antigravity** — add a remote MCP server with the URL above, then complete the sign-in Antigravity opens.
