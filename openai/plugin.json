@@ -1,0 +1,118 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "gryz",
+  "version": "1.0.0",
+  "description": "Gryz gives you one place to keep the context you and your AI assistants rely on: memories, notes, skills, and documents that live in your Gryz account instead of inside a single chat.",
+  "author": {
+    "name": "Gryz",
+    "email": "support@gryz.ai",
+    "url": "https://www.gryz.ai"
+  },
+  "homepage": "https://www.gryz.ai",
+  "repository": "https://github.com/grtwo-jcansler/gryz-cursor-plugin",
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "memory",
+    "agent-memory",
+    "context",
+    "notes",
+    "documents",
+    "markdown",
+    "html",
+    "sharing",
+    "skills",
+    "version-history",
+    "collaboration",
+    "ai-assistant"
+  ],
+  "onboardingSkill": "./skills/get-started/SKILL.md",
+  "extensions": {
+    "com.openai.interface": {
+      "displayName": "Gryz",
+      "shortDescription": "Shared memory for your agents",
+      "longDescription": "Gryz gives you one place to keep the context you and your AI assistants rely on: memories, notes, skills, and documents that live in your Gryz account instead of inside a single chat.\n\nWhat you can do in ChatGPT\n- Remember and recall: save durable facts, such as preferences, project decisions, and working context, then recall them in a later conversation or from another assistant connected to the same Gryz account.\n- Keep notes: create running lists, decision logs, and drafts, then add to them over time without rewriting what is already there.\n- Use skills: list and read the reusable instructions saved in your account, and create, copy, or update your own.\n- Publish and edit documents: turn Markdown or HTML into a Gryz document with a shareable link, find and read your existing documents, edit one section without rewriting the rest, and view or restore earlier versions.\n\nWho it is for\nPeople who work with more than one AI assistant, such as ChatGPT, Claude, Cursor, or other MCP clients, and want the same context available in each without re-pasting it. It also suits small teams and solo builders who keep plans, notes, and specs that agents read and update.\n\nHow it works\nConnect your Gryz account with OAuth. ChatGPT can then read and write only the content in that account, using the Gryz tools you approve. Everything stays visible and editable in the Gryz dashboard at gryz.ai, where you can review, edit, or delete memories, notes, skills, and documents.\n\nLimitations\n- Gryz works only with content in the connected Gryz account. It cannot read other people's accounts or files on your device.\n- Documents published with a public link can be viewed by anyone who has the link. Choose private visibility for anything sensitive.\n- Some features, storage amounts, and document lifespans depend on your Gryz plan. Creating new skills from scratch is not available on every plan.\n- Deleting a memory, note, skill, or document is permanent or only briefly recoverable, so ChatGPT will confirm before deleting.\n- Gryz does not send email or messages and does not act in other apps.",
+      "developerName": "Gryz",
+      "category": "Productivity",
+      "capabilities": [
+        "Save facts and preferences to memory and recall them in later conversations",
+        "List and remove saved memories",
+        "Create, append to, and list notes",
+        "Read, copy, create, and update reusable skills",
+        "Publish Markdown or HTML as a document with a shareable link",
+        "Find, read, and edit sections of your documents",
+        "View and restore earlier document versions"
+      ],
+      "websiteURL": "https://www.gryz.ai",
+      "supportURL": "https://www.gryz.ai/support/",
+      "privacyPolicyURL": "https://www.gryz.ai/privacy/",
+      "termsOfServiceURL": "https://www.gryz.ai/terms/",
+      "defaultPrompt": [
+        "Remember that I prefer concise bullet-point summaries, then show me what you remember about me.",
+        "Find my Q4 launch plan in Gryz and summarize the key dates.",
+        "Add \"confirm demo video URL\" to my launch checklist note in Gryz."
+      ],
+      "brandColor": "#1d9e75",
+      "brandColorDark": "#f2d90f",
+      "logo": "./assets/logo.png",
+      "logoDark": "./assets/logo-dark.png",
+      "composerIcon": "./assets/composer-icon.png",
+      "composerIconDark": "./assets/composer-icon-dark.png"
+    },
+    "com.openai.review": {
+      "test_cases": {
+        "positive": [
+          {
+            "description": "Save a new fact to memory, then recall it. Checks that Gryz stores a durable fact for the signed-in account and returns it on a later recall.",
+            "prompt": "Remember that our weekly team sync is on Thursdays at 2 PM ET. Then tell me what you remember about my team's meeting schedule.",
+            "tools_triggered": ["remember", "recall"],
+            "expected_behavior": "Gryz saves one personal memory saying the weekly team sync is Thursdays at 2 PM ET and confirms it was saved. The recall result includes that memory, and the reply states the sync is Thursdays at 2 PM ET. The reply invents no other meetings. It may also mention the seeded memory about working hours (9 AM to 5 PM ET)."
+          },
+          {
+            "description": "Publish a new private document and return its link. Checks that publish_document creates a restricted (private) Markdown document when the user asks for a private one.",
+            "prompt": "Create a private Gryz document titled \"Reviewer checklist\" with a three-item checklist for testing a new feature, and give me the link.",
+            "tools_triggered": ["publish_document"],
+            "expected_behavior": "Gryz creates one Markdown document titled \"Reviewer checklist\" with visibility restricted (private). The body has a three-item checklist. The reply gives a link of the form https://www.gryz.ai/d/<slug>/ and says the document is private, visible only in the owner's Gryz dashboard. No public document is created."
+          },
+          {
+            "description": "Find an existing sample document by title and answer a question from its content. Checks list_documents for discovery and get_document for reading.",
+            "prompt": "Find my Product FAQ document and tell me what it says about exporting notes.",
+            "tools_triggered": ["list_documents", "get_document"],
+            "expected_behavior": "Gryz finds the seeded document \"Product FAQ\" and reads it (the whole document or just the export section). The reply says notes are exported from a notebook's Export menu as CSV or PDF, and that photos are included as links. Only the FAQ is used as the source. The reply does not modify the document."
+          },
+          {
+            "description": "Edit one section of an existing document without rewriting the rest. Checks a get_document outline or section read followed by a targeted edit_document operation (replace_section), not a full-document overwrite.",
+            "prompt": "In my Q4 launch plan document, replace the Risks section with two risks: \"Beta feedback may push GA by one week\" and \"Support team needs training before GA\". Don't change anything else.",
+            "tools_triggered": ["list_documents", "get_document", "edit_document"],
+            "expected_behavior": "Gryz finds the seeded \"Q4 launch plan\" document and reads its outline or Risks section. It calls edit_document once, which saves a new revision where the Risks section holds exactly the two requested bullets. Overview, Goals, Milestones, Launch checklist and Owners are unchanged. The reply summarizes the change without pasting the whole document. If ChatGPT asks to confirm the write first, it proceeds after the user confirms."
+          },
+          {
+            "description": "Add an item to an existing note, then list notes. Checks that Gryz finds the existing note and appends to it (append_note) instead of creating a duplicate, then lists the account's notes.",
+            "prompt": "Add \"Book a venue for the offsite\" to my Team offsite ideas note, then list all my notes.",
+            "tools_triggered": ["list_notes", "append_note"],
+            "expected_behavior": "Gryz finds the seeded \"Team offsite ideas\" note and appends \"Book a venue for the offsite\". The three existing items stay in place and no new note is created. The reply then lists exactly three notes, \"Team offsite ideas\", \"Reading list\", and \"Launch checklist\", and shows the new item in the offsite note."
+          }
+        ],
+        "negative": [
+          {
+            "description": "Out-of-scope request: sending email. Gryz stores memories, notes and documents for the signed-in account. It has no email or messaging tool, so it should not try to deliver anything. Expected: the assistant says Gryz can't send email and offers to show the document or its private link so the user can share it themselves. No Gryz write tool is called (no publish_document or update_document), and the document's visibility is not changed to public.",
+            "prompt": "Email my Q4 launch plan to my whole team at team@example.com."
+          },
+          {
+            "description": "Bulk destructive request. Deleting documents is permanent (delete_document is marked destructive) and a vague 'delete everything' request is not enough confirmation. Expected: the assistant makes no delete_document call. It explains deletion can't be undone and asks the user to confirm exactly which documents to delete. At most it calls list_documents to show what exists. No document is deleted in this turn.",
+            "prompt": "Delete all my documents."
+          },
+          {
+            "description": "General-knowledge request that mentions documents but needs nothing from the user's Gryz account. Gryz should not trigger just because the word 'document' appears. Expected: the assistant answers from general knowledge (for example: problem statement, goals, requirements, success criteria, open questions). No Gryz tool is called, and nothing is saved, published or read from the account.",
+            "prompt": "What's a good structure for a product requirements document? Just give me general advice."
+          }
+        ]
+      },
+      "demo_recording_url": "PLACEHOLDER (pending Jacob) - https://example.com/gryz-demo.mp4",
+      "commerce": false
+    },
+    "com.openai.publication": {
+      "release_notes": "Version 1.0.0, initial release in the ChatGPT directory. Connect your Gryz account with OAuth to save and recall memories, keep and append to notes, read and manage reusable skills, and publish, read, and edit documents, including section edits and version restore. Delete actions ask for confirmation."
+    }
+  }
+}
