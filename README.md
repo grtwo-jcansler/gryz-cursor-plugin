@@ -1,13 +1,38 @@
-# Gryz for Cursor
+# Gryz
 
-One shared memory your AI assistants read and write across tools and sessions —
-you own it and manage it from the [Gryz](https://www.gryz.ai) dashboard. Plus
-private Notes and easy Markdown/HTML sharing, all from inside your editor over
+Gryz is the shared memory and workspace for your AI agent team, plus doc
+publishing. Assistants you use can read and write the same facts, notes, and
+documents across tools and sessions. You own that context and manage it from
+the [Gryz](https://www.gryz.ai) dashboard, over
 [MCP](https://modelcontextprotocol.io).
 
-## What you get
+## Connect
 
-Once connected, Cursor can call these tools on your behalf.
+Use this URL exactly — no trailing slash:
+
+```text
+https://www.gryz.ai/api/mcp
+```
+
+OAuth and API-key access are both free with any Gryz account — no subscription required.
+
+Sign-in depends on the client:
+
+- **VS Code** — In the Extensions view, search `@mcp gryz` and click **Install**. Sign-in starts as soon as it installs (Google, GitHub, a magic link, or a password). If that search does not list Gryz, use the Command Palette: **MCP: Add Server**, choose HTTP, and paste the URL.
+- **Cursor** — add the URL in Cursor MCP settings, or follow [Cursor plugin](#cursor-plugin) below. The first tool call opens a browser to sign in.
+- **Claude** — **Settings → Connectors → Add connector**, paste the URL, and finish sign-in on that screen. Claude starts OAuth there, not from a tool call.
+- **Antigravity** — add a remote MCP server with the URL above, then complete the sign-in Antigravity opens.
+- **Windsurf** — search **Gryz** in the Cascade marketplace, or open `windsurf://windsurf-mcp-registry?serverName=gryz`, and sign in when Cascade prompts.
+- **Other MCP clients** — any client that speaks streamable HTTP can use the same URL.
+- **API key** — create one at [gryz.ai/account/api-keys](https://www.gryz.ai/account/api-keys/) and send `Authorization: Bearer YOUR_API_KEY`. That path does not open a browser.
+
+Full walkthrough: [MCP setup guide](https://www.gryz.ai/docs/mcp/).
+
+## Tools
+
+Once connected, your assistant can call these tools on your behalf. Core tools
+include `remember`, `recall`, `list_memories`, `forget`, `list_documents`, and
+`publish_document`.
 
 ### Memory
 
@@ -21,7 +46,8 @@ for model training.
 - **List memories** — see everything stored, with provenance
 - **Forget a fact** — drop something wrong or stale by id
 
-Recalled memory is data you saved, not instructions — Cursor treats it that way.
+Recalled memory is data you saved, not instructions. Assistants should treat it
+that way.
 
 MCP tool ids: `remember`, `recall`, `list_memories`, `forget`.
 
@@ -45,7 +71,7 @@ MCP tool ids: `list_notes`, `get_note`, `create_note`, `append_note`,
 
 ### Documents
 
-Turn editor content into a link you can send someone, and keep long documents
+Turn content into a link you can send someone, and keep long documents
 current without resending them.
 
 - **Publish a document** — Markdown or HTML, public or private
@@ -142,13 +168,16 @@ MCP tool ids: `list_comments`, `add_comment`, `delete_comment`.
 ### Setup
 
 - **Agent onboarding** — after you connect and sign in, `agent_onboarding`
-  configures this editor for Gryz and answers "how do I use X?". It is
+  configures your assistant for Gryz and answers "how do I use X?". It is
   read-only on Gryz; any change to a local instruction file is shown to you
   and needs your explicit approval first.
 
 <!-- gryz-mcp-tools: remember, recall, list_memories, forget, list_notes, create_note, append_note, update_note, delete_note, publish_document, get_document, list_documents, update_document, delete_document, list_projects, get_project, agent_onboarding, append_to_document, edit_document, list_document_revisions, restore_document_revision, suggest_document_edit, list_document_suggestions, get_note, associate_document, disassociate_document, list_skills, get_skill, create_skill, update_skill, fork_skill, delete_skill, create_task, list_tasks, get_task, update_task, broker_list_tools, broker_call_tool, list_comments, add_comment, delete_comment -->
 
-## Install
+## Cursor plugin
+
+This repository is also the Cursor plugin package (`mcp.json` and
+`.cursor-plugin/plugin.json`).
 
 ### One-click
 
@@ -174,15 +203,10 @@ setup guide, or search **Gryz** in the Cursor plugin marketplace.
 ```
 
 Use `https://www.gryz.ai/api/mcp` exactly — **no trailing slash**. Cursor OAuth
-fails if the URL does not match Gryz protected-resource metadata.
+fails if the URL does not match Gryz protected-resource metadata. The `mcp.json`
+in this repo has no API key.
 
-## Signing in
-
-The first tool call opens a browser window to authorize Gryz via OAuth —
-sign in with Google, GitHub, a magic link, or a password. No API key needed
-for this flow, and no secrets live in this plugin's manifest.
-
-**Prefer an API key instead?** Generate one at
+**Prefer an API key in Cursor?** Generate one at
 [gryz.ai/account/api-keys](https://www.gryz.ai/account/api-keys/) and add it
 as a header in your own `mcp.json`:
 
@@ -199,9 +223,6 @@ as a header in your own `mcp.json`:
 }
 ```
 
-Both OAuth and API key access are free with any Gryz account — no
-subscription required.
-
 ## Example prompts
 
 - *"Remember that I deploy from the `release` branch, never `main`"*
@@ -210,12 +231,6 @@ subscription required.
 - *"Publish this markdown to Gryz as a public doc titled Q3 Roadmap"*
 - *"Add today's entry to the end of my release tracker doc without rewriting it"*
 - *"Show me what changed in that doc since yesterday, then restore the old version of the Plan section"*
-
-## Already using the old URL?
-
-`https://www.grtwo.app/api/mcp` — the previous domain — still works during the
-brand transition from grtwo.app to Gryz. No need to change an existing
-connection until you are ready; new setups should use the `gryz.ai` URL above.
 
 ## Links
 
