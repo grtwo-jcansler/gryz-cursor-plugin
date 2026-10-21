@@ -18,7 +18,7 @@ OAuth and API-key access are both free with any Gryz account — no subscription
 
 Sign-in depends on the client:
 
-- **VS Code** — Command Palette: **MCP: Add Server**, choose HTTP, and paste the URL. The first tool call opens a browser to sign in (Google, GitHub, a magic link, or a password).
+- **VS Code** — In the Extensions view, search `@mcp gryz` and click **Install**. Sign-in starts as soon as it installs (Google, GitHub, a magic link, or a password). Chat needs a GitHub Copilot sign-in before it can use any MCP tools. If that search does not list Gryz, use the Command Palette: **MCP: Add Server**, choose HTTP, and paste the URL.
 - **Cursor** — add the URL in Cursor MCP settings, or follow [Cursor plugin](#cursor-plugin) below. The first tool call opens a browser to sign in.
 - **Claude** — **Settings → Connectors → Add connector**, paste the URL, and finish sign-in on that screen. Claude starts OAuth there, not from a tool call.
 - **Antigravity** — add a remote MCP server with the URL above, then complete the sign-in Antigravity opens.
@@ -231,12 +231,6 @@ as a header in your own `mcp.json`:
 - *"Publish this markdown to Gryz as a public doc titled Q3 Roadmap"*
 - *"Add today's entry to the end of my release tracker doc without rewriting it"*
 - *"Show me what changed in that doc since yesterday, then restore the old version of the Plan section"*
-
-## Already using the old URL?
-
-`https://www.grtwo.app/api/mcp` — the previous domain — still works during the
-brand transition from grtwo.app to Gryz. No need to change an existing
-connection until you are ready; new setups should use the `gryz.ai` URL above.
 
 ## Links
 
