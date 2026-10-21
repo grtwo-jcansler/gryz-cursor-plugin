@@ -14,18 +14,17 @@ Use this URL exactly — no trailing slash:
 https://www.gryz.ai/api/mcp
 ```
 
-The first tool call opens a browser window to authorize Gryz (Google, GitHub,
-a magic link, or a password). No API key is required. API-key access is also
-free with any Gryz account: create one at
-[gryz.ai/account/api-keys](https://www.gryz.ai/account/api-keys/) and send it
-as `Authorization: Bearer YOUR_API_KEY`.
+OAuth and API-key access are both free with any Gryz account — no subscription required.
 
-- **VS Code** — add an HTTP MCP server with the URL above (Command Palette: **MCP: Add Server**).
-- **Cursor** — add the URL in Cursor MCP settings, or use the [Cursor plugin](#cursor-plugin) section below.
-- **Claude** — **Settings → Connectors → Add connector**, then paste the URL.
-- **Antigravity** — add a remote MCP server with the URL above.
-- **Windsurf** — search **Gryz** in the Cascade marketplace, or open `windsurf://windsurf-mcp-registry?serverName=gryz`.
+Sign-in depends on the client:
+
+- **VS Code** — Command Palette: **MCP: Add Server**, choose HTTP, and paste the URL. The first tool call opens a browser to sign in (Google, GitHub, a magic link, or a password).
+- **Cursor** — add the URL in Cursor MCP settings, or follow [Cursor plugin](#cursor-plugin) below. The first tool call opens a browser to sign in.
+- **Claude** — **Settings → Connectors → Add connector**, paste the URL, and finish sign-in on that screen. Claude starts OAuth there, not from a tool call.
+- **Antigravity** — add a remote MCP server with the URL above, then complete the sign-in Antigravity opens.
+- **Windsurf** — search **Gryz** in the Cascade marketplace, or open `windsurf://windsurf-mcp-registry?serverName=gryz`, and sign in when Cascade prompts.
 - **Other MCP clients** — any client that speaks streamable HTTP can use the same URL.
+- **API key** — create one at [gryz.ai/account/api-keys](https://www.gryz.ai/account/api-keys/) and send `Authorization: Bearer YOUR_API_KEY`. That path does not open a browser.
 
 Full walkthrough: [MCP setup guide](https://www.gryz.ai/docs/mcp/).
 
@@ -204,7 +203,8 @@ setup guide, or search **Gryz** in the Cursor plugin marketplace.
 ```
 
 Use `https://www.gryz.ai/api/mcp` exactly — **no trailing slash**. Cursor OAuth
-fails if the URL does not match Gryz protected-resource metadata.
+fails if the URL does not match Gryz protected-resource metadata. The `mcp.json`
+in this repo has no API key.
 
 **Prefer an API key in Cursor?** Generate one at
 [gryz.ai/account/api-keys](https://www.gryz.ai/account/api-keys/) and add it

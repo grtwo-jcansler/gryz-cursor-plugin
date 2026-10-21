@@ -1,7 +1,7 @@
 {
   "name": "gryz",
   "description": "One shared memory your AI assistants read and write across tools and sessions — you own it and manage it from the Gryz dashboard. Plus documents your assistants can edit safely, private Notes, Skills, and Tasks, over MCP with OAuth sign-in.",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "author": { "name": "Gryz" },
   "homepage": "https://www.gryz.ai",
   "repository": "https://github.com/grtwo-jcansler/gryz-cursor-plugin",
