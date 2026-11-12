@@ -41,6 +41,12 @@
     { "name": "broker_call_tool", "readmeLabel": "Call a connected tool" },
     { "name": "list_comments", "readmeLabel": "List comments" },
     { "name": "add_comment", "readmeLabel": "Add a comment" },
-    { "name": "delete_comment", "readmeLabel": "Delete a comment" }
+    { "name": "delete_comment", "readmeLabel": "Delete a comment" },
+    { "name": "search", "readmeLabel": "Search your Gryz" },
+    { "name": "fetch", "readmeLabel": "Read a search result" },
+    { "name": "map", "readmeLabel": "Map your folders" },
+    { "name": "list_comment_threads", "readmeLabel": "Review comment threads" },
+    { "name": "respond_to_comments", "readmeLabel": "Respond to comments" },
+    { "name": "get_profile", "readmeLabel": "See a bot's profile" }
   ]
 }

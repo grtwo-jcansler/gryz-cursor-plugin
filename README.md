@@ -1,10 +1,16 @@
 # Gryz
 
-Gryz is the shared memory and workspace for your AI agent team, plus doc
-publishing. Assistants you use can read and write the same facts, notes, and
-documents across tools and sessions. You own that context and manage it from
-the [Gryz](https://www.gryz.ai) dashboard, over
-[MCP](https://modelcontextprotocol.io).
+The OS for your AI bots. Every bot you use reads and writes the same Gryz
+account:
+
+- Documents you can share with a link
+- Private notes
+- Memory that carries across tools and sessions
+- Projects, skills, and tasks
+
+You own all of it and manage it from the [Gryz](https://www.gryz.ai)
+dashboard. Bots connect over [MCP](https://modelcontextprotocol.io) with OAuth
+sign-in.
 
 ## Connect
 
@@ -102,6 +108,19 @@ MCP tool ids: `publish_document`, `get_document`, `list_documents`,
 `list_document_revisions`, `restore_document_revision`,
 `suggest_document_edit`, `list_document_suggestions`, `delete_document`.
 
+### Search
+
+Find what you saved without knowing a title or link.
+
+- **Search your Gryz** - documents, notes, memories, and tasks, by meaning and
+  by exact words
+- **Read a search result** - the full text, or just an outline or one section
+  of a long document
+- **Map your folders** - see how your documents are organized, with a short
+  summary of each
+
+MCP tool ids: `search`, `fetch`, `map`.
+
 ### Projects
 
 Views of the Project hubs you organize in the dashboard, plus filing documents
@@ -162,8 +181,13 @@ These need the comments permission, which is opt-in when you connect.
 - **List comments** — on your documents, or private documents shared with you
 - **Add a comment** — plain text or a one-level reply
 - **Delete a comment** — only comments an agent posted for you
+- **Review comment threads** - each thread comes with a question for you, and
+  your bot waits for your answer before it acts
+- **Respond to comments** - reply, suggest a change, make the change, or mark
+  the comment done, whichever you chose
 
-MCP tool ids: `list_comments`, `add_comment`, `delete_comment`.
+MCP tool ids: `list_comments`, `add_comment`, `delete_comment`,
+`list_comment_threads`, `respond_to_comments`.
 
 ### Setup
 
@@ -171,8 +195,10 @@ MCP tool ids: `list_comments`, `add_comment`, `delete_comment`.
   configures your assistant for Gryz and answers "how do I use X?". It is
   read-only on Gryz; any change to a local instruction file is shown to you
   and needs your explicit approval first.
+- **See a bot's profile** - which team member a bot is acting as, what it has
+  saved, and what is open for it. Tool id: `get_profile`.
 
-<!-- gryz-mcp-tools: remember, recall, list_memories, forget, list_notes, create_note, append_note, update_note, delete_note, publish_document, get_document, list_documents, update_document, delete_document, list_projects, get_project, agent_onboarding, append_to_document, edit_document, list_document_revisions, restore_document_revision, suggest_document_edit, list_document_suggestions, get_note, associate_document, disassociate_document, list_skills, get_skill, create_skill, update_skill, fork_skill, delete_skill, create_task, list_tasks, get_task, update_task, broker_list_tools, broker_call_tool, list_comments, add_comment, delete_comment -->
+<!-- gryz-mcp-tools: remember, recall, list_memories, forget, list_notes, create_note, append_note, update_note, delete_note, publish_document, get_document, list_documents, update_document, delete_document, list_projects, get_project, agent_onboarding, append_to_document, edit_document, list_document_revisions, restore_document_revision, suggest_document_edit, list_document_suggestions, get_note, associate_document, disassociate_document, list_skills, get_skill, create_skill, update_skill, fork_skill, delete_skill, create_task, list_tasks, get_task, update_task, broker_list_tools, broker_call_tool, list_comments, add_comment, delete_comment, search, fetch, map, list_comment_threads, respond_to_comments, get_profile -->
 
 ## Cursor plugin
 
@@ -182,7 +208,8 @@ This repository is also the Cursor plugin package (`mcp.json` and
 ### One-click
 
 Use the **[Add to Cursor](https://www.gryz.ai/docs/mcp/)** button on the MCP
-setup guide, or search **Gryz** in the Cursor plugin marketplace.
+setup guide, or install from the
+[Gryz listing on Cursor Directory](https://cursor.directory/plugins/gryz).
 
 ### Manual
 
